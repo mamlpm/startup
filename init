@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 from datetime import date
 import os
+import pathlib
 from getNeofetchDistros import getRandDistro
-path = '/home/maml/projects/startup/date.txt'
+path = str(pathlib.Path(__file__).parent.resolve()) + r'/date.txt'
 if os.path.exists(path) == False:
     with open(path, 'w') as f:
         f.write('')
