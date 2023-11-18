@@ -16,7 +16,7 @@ def getDistros():
 
 def getRandDistro():
     distros = getDistros()
-    return distros[round(random() * len(distros))]
+    return distros[round(random() * len(distros) - 1)]
 
 
 getDistros()
