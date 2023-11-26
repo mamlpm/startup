@@ -4,16 +4,25 @@ import os
 import pathlib
 from getNeofetchDistros import getRandDistro
 path = str(pathlib.Path(__file__).parent.resolve()) + r'/date.txt'
-if os.path.exists(path) == False:
-    with open(path, 'w') as f:
-        f.write('')
+hyprland = os.path.isfile(r'/home/m1k4n/.config/hypr/hyprland.conf')
+hyprlandRun = False
+try:
+    response = os.environ['HYPRLAND_INSTANCE_SIGNATURE']
+    hyprlandRun = len(response) > 5
+except:
+    hyprlandRun = False
 
-f = open(path, 'r')
-today = date.today().strftime('%d/%m/%Y')
-fileDate = f.read()
-f.close()
+if hyprland == False or (hyprland == True and hyprlandRun == False):
+    if os.path.exists(path) == False:
+        with open(path, 'w') as f:
+            f.write('')
 
-if fileDate == '' or today != fileDate:
-    os.system('neofetch --ascii_distro ' + getRandDistro())
-    with open(path, 'w') as f:
-        f.write(today)
+    f = open(path, 'r')
+    today = date.today().strftime('%d/%m/%Y')
+    fileDate = f.read()
+    f.close()
+
+    if fileDate == '' or today != fileDate:
+        os.system('neofetch --ascii_distro ' + getRandDistro())
+        with open(path, 'w') as f:
+            f.write(today)
